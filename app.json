@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "RMS",
-    "slug": "RMS",
+    "slug": "tuananh1509",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -40,7 +40,6 @@
           "light": {
             "backgroundColor": "#ffffff"
           }
-      
         }
       ],
       "expo-font"
@@ -48,6 +47,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "b5d912d8-ca9d-4459-899a-3b933752db8d"
+      }
+    },
+    "owner": "tuananhexpo"
   }
 }

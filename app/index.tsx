@@ -1,5 +1,6 @@
 import { Recipe } from "@/components/constants/recipe";
 import ThemedButton from "@/components/theme-button";
+import ThemedScrollView from "@/components/theme-scroll";
 import ThemedText from "@/components/Theme-text";
 import ThemedView from "@/components/theme-view";
 import IconButton from "@/components/ui/icon-button";
@@ -170,6 +171,51 @@ export default function Index() {
         // }
     ]
 
+    const suggestedFunctions = [
+        {
+            id: '1',
+            title: 'Nấu nhanh dưới 15 phút',
+            color: '#DE754F',
+            icon: <Ionicons name="flash-outline" size={34} color="#DE754F" />,
+            onPress: OnPressButton,
+        },
+        {
+            id: '2',
+            title: 'Món chay thanh đạm',
+            color: '#4FDED6',
+            icon: <Ionicons name="leaf-outline" size={34} color="#4FDED6" />,
+            onPress: OnPressButton,
+        },
+        {
+            id: '3',
+            title: 'Món ăn giảm cân',
+            color: '#2888D1',
+            icon: <Ionicons name="fitness-outline" size={34} color="#2888D1" />,
+            onPress: OnPressButton,
+        },
+        {
+            id: '4',
+            title: 'Món ăn cho người tiểu đường',
+            color: '#28D152',
+            icon: <Ionicons name="medkit-outline" size={34} color="#28D152" />,
+            onPress: OnPressButton,
+        },
+        {
+            id: '5',
+            title: 'Trending tuần này',
+            color: '#DE754F',
+            icon: <Ionicons name="trending-up-outline" size={34} color="#DE754F" />,
+            onPress: OnPressButton,
+        },
+        {
+            id: '6',
+            title: 'Ăn sáng nhanh gọn',
+            color: '#DE4F9B',
+            icon: <Ionicons name="sunny-outline" size={34} color="#DE4F9B" />,
+            onPress: OnPressButton,
+        },
+    ]
+
     return (
         <>
             <Stack.Screen options={{ headerShown: false }} />
@@ -328,6 +374,29 @@ export default function Index() {
                                     </ThemedView>
 
                                     <ServiceGrid style={{ marginTop: 40 }} items={gridItems} columns={4} gap={6} />
+
+                                    <ThemedText type="defaultSemiBold" style={{ marginTop: 30, fontSize: 20, marginBottom: 10 }}>Gợi ý cho bạn</ThemedText>
+                                    <ThemedScrollView flexDirection="row" horizontal showsHorizontalScrollIndicator={false}>
+                                        { suggestedFunctions?.map(func => (
+                                            <ThemedButton key={func.id} onPress={func.onPress} 
+                                            style={({ pressed }) => ({
+                                                width: 100,
+                                                padding: 10,
+                                                borderRadius: 10,
+                                                marginBottom: 10,
+                                                marginRight: 5,
+                                                boxShadow: '1px 2px 5px rgba(0, 0, 0, 0.1)',
+                                                backgroundColor: !pressed ? '#fff' : '#EDFEE7',
+                                            })}>
+                                                <ThemedView lightColor="transparent" darkColor="transparent" style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+                                                
+                                                    {func.icon}
+                    
+                                                    <ThemedText type="defaultSemiBold" style={{ fontSize: 12 }}>{func.title}</ThemedText>
+                                                </ThemedView>
+                                            </ThemedButton>
+                                        )) } 
+                                    </ThemedScrollView>
                                 </ThemedView>
                             </>
                         }
