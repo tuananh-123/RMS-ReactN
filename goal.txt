@@ -1,0 +1,49 @@
+Mục tiêu dự án: {
+    Chức năng: {
+        công thức: {
+            Quản lí công thức cá nhân,
+            Thống kê bếp (lượng truy cập của món ăn),
+            Đánh giá công thức,
+            Lưu trữ công thức,
+            In công thức ra giấy (print),
+            Tìm kiếm công thức: {
+                Từ khóa,
+                tên món,
+                chất dinh dưỡng, hàm lượng calo
+                v.v..
+            },
+            Gợi ý công thức: {
+                (ý tưởng logging các công thức mà người dùng thường xuyên ấn vào và xem trong 1 khoảng thời gian nhất định)
+                qua các mảng lọc: nguyên liệu dị ứng, cân nặng, chiều cao, tài chính một bữa ăn
+            }
+            Lọc công thức: {
+                các công thức mà người dùng bị dị ứng (Thông tin dị ứng lưu vào bảng người dùng),
+                danh mục,
+                quốc gia,
+                văn hóa ẩm thực
+            }
+        },
+        Người dùng: {
+            Quản lí thông tin: {
+                avatar,
+                quốc gia,
+                email liên hệ,
+                tên, 
+                cân nặng,
+                nguyên liệu bị dị ứng
+            },
+            ẩn thông tin không muốn công khai,
+            Thông báo: {
+                công thức được đánh giá,
+                tin nhắn
+            },
+            nhắn tin với người dùng khác,
+        }
+        bổ sung: {
+            video Feeds (kéo tương tác người dùng),
+        },
+        cài đặt: {
+            giao diện sáng, tối,
+        }
+    }
+}

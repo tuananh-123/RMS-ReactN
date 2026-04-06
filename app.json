@@ -36,9 +36,14 @@
           "backgroundColor": "#ffffff",
           "dark": {
             "backgroundColor": "#000000"
+          },
+          "light": {
+            "backgroundColor": "#ffffff"
           }
+      
         }
-      ]
+      ],
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true,
