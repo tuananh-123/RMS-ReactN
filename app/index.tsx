@@ -20,13 +20,14 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import Octicons from '@expo/vector-icons/Octicons';
 import { Stack } from "expo-router";
 import { FlatList, ImageBackground, StyleSheet } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 function OnPressButton() {
     alert("Bạn đã nhấn nút!");
 }
 
 export default function Index() {
+    const insets = useSafeAreaInsets();
     const hotSearhToday = [
         "Cơm chiên dương châu",
         "Phở bò tái chín",
@@ -114,7 +115,7 @@ export default function Index() {
         }
 
     ]
-    
+
     const quickStatsDividerColor = {
         light: 'rgba(0, 0, 0, 0.12)',
         dark: 'rgba(255, 255, 255, 0.16)'
@@ -219,166 +220,166 @@ export default function Index() {
     return (
         <>
             <Stack.Screen options={{ headerShown: false }} />
-            <SafeAreaView style={{ flex: 1 }} edges={['top']}>
-                <ImageBackground
-                    source={require('@/assets/images/background_foodraining.png')}
-                    style={{ flex: 1, justifyContent: "flex-start", alignItems: "flex-start" }}
-                    resizeMode="cover"
-                >
-                    <FlatList
-                        data={recipes}
-                        keyExtractor={(item) => item.id.toString()}
-                        renderItem={({ item }) => <ThemedRenderRecipeItem item={item} />}
-                        initialNumToRender={3}
-                        style={{ flex: 1, width: '100%' }}
-                        contentContainerStyle={{ paddingBottom: 0 }}
-                        ListHeaderComponent={
-                            <>
-                                <ThemedView style={styles.headerBar}>
-                                    <SearchBar
-                                        icon={{ render: ({ color, size }) => <EvilIcons name="search" size={size} color={color} />, size: 26 }}
-                                        typeText="default"
-                                        placeholder="Tìm kiếm công thức..."
-                                        slideHotSearch={{ searchs: hotSearhToday, speed: 3000 }}
-                                        style={styles.searchBarWrap}
-                                    />
-                                    <ThemedView style={styles.actionGroup}>
-                                        <IconButton
-                                            icon={{ render: ({ color, size }) => <Feather name="bell" size={size} color={color} />, size: 24, color: '#fff' }}
-                                            onPress={OnPressButton}
-                                        />
-                                        <IconButton
-                                            icon={{ render: ({ color, size }) => <MaterialCommunityIcons name="message-processing-outline" size={size} color={color} />, size: 24, color: '#fff' }}
-                                            onPress={OnPressButton}
-                                        />
-                                    </ThemedView>
-                                </ThemedView>
 
-                                <ThemedView style={[styles.actionGroupButton, { marginTop: 10 }]}>
+            <ImageBackground
+                source={require('@/assets/images/background_foodraining.png')}
+                style={[styles.screenBackground, { marginTop: insets.top }]}
+                resizeMode="cover"
+            >
+                <FlatList
+                    data={recipes}
+                    keyExtractor={(item) => item.id.toString()}
+                    renderItem={({ item }) => <ThemedRenderRecipeItem item={item} />}
+                    initialNumToRender={3}
+                    style={{ flex: 1, width: '100%' }}
+                    contentContainerStyle={{ paddingBottom: 0 }}
+                    ListHeaderComponent={
+                        <>
+                            <ThemedView style={styles.headerBar}>
+                                <SearchBar
+                                    icon={{ render: ({ color, size }) => <EvilIcons name="search" size={size} color={color} />, size: 26 }}
+                                    typeText="default"
+                                    placeholder="Tìm kiếm công thức..."
+                                    slideHotSearch={{ searchs: hotSearhToday, speed: 3000 }}
+                                    style={styles.searchBarWrap}
+                                />
+                                <ThemedView style={styles.actionGroup}>
                                     <IconButton
-                                        icon={{
-                                            render: ({ color, size, style }) => <Entypo name="squared-plus" size={size} color={color} style={style} />,
-                                            size: 20,
-                                            color: 'green',
-                                            style: { backgroundColor: '#fff', padding: 15, borderRadius: 10 }
-                                        }} placeholder="Thêm"
-                                        style={styles.actionButtonItem}
-                                        typeText="defaultSemiBold"
-                                        lightColor="transparent"
-                                        darkColor="transparent"
+                                        icon={{ render: ({ color, size }) => <Feather name="bell" size={size} color={color} />, size: 24, color: '#fff' }}
                                         onPress={OnPressButton}
                                     />
                                     <IconButton
-                                        icon={{
-                                            render: ({ color, size, style }) => <MaterialCommunityIcons name="storage-tank" size={size} color={color} style={style} />,
-                                            size: 20,
-                                            color: 'green',
-                                            style: { backgroundColor: '#fff', padding: 15, borderRadius: 10 }
-                                        }} placeholder="Lưu trữ"
-                                        style={styles.actionButtonItem}
-                                        typeText="defaultSemiBold"
-                                        lightColor="transparent"
-                                        darkColor="transparent"
-                                        onPress={OnPressButton}
-                                    />
-                                    <IconButton
-                                        icon={{
-                                            render: ({ color, size, style }) => <Foundation name="lightbulb" size={size} color={color} style={style} />,
-                                            size: 20,
-                                            color: 'green',
-                                            style: { backgroundColor: '#fff', padding: 15, borderRadius: 10 }
-                                        }} placeholder="Gợi ý"
-                                        style={styles.actionButtonItem}
-                                        typeText="defaultSemiBold"
-                                        lightColor="transparent"
-                                        darkColor="transparent"
-                                        onPress={OnPressButton}
-                                    />
-                                    <IconButton
-                                        icon={{
-                                            render: ({ color, size, style }) => <FontAwesome name="line-chart" size={size} color={color} style={style} />,
-                                            size: 20,
-                                            color: 'green',
-                                            style: { backgroundColor: '#fff', padding: 15, borderRadius: 10 }
-                                        }} placeholder="Thống kê"
-                                        style={styles.actionButtonItem}
-                                        typeText="defaultSemiBold"
-                                        lightColor="transparent"
-                                        darkColor="transparent"
+                                        icon={{ render: ({ color, size }) => <MaterialCommunityIcons name="message-processing-outline" size={size} color={color} />, size: 24, color: '#fff' }}
                                         onPress={OnPressButton}
                                     />
                                 </ThemedView>
+                            </ThemedView>
 
-                                <ThemedView style={[{ width: '100%', paddingHorizontal: 10, marginTop: 100, paddingBottom: 24 }, styles.boxContent]}>
-                                    <ThemedView style={styles.quickStatsShadow}>
-                                        <ThemedView style={styles.quickStatsCard}>
-                                            <ThemedButton style={styles.quickStatButton} onPress={OnPressButton}>
-                                                <ThemedView>
-                                                    <ThemedView style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-                                                        <MaterialCommunityIcons name="silverware-fork-knife" size={14} color="green" />
-                                                        <ThemedText type="defaultSemiBold" style={{ fontSize: 14, textAlign: 'justify' }}>Công thức</ThemedText>
-                                                    </ThemedView>
+                            <ThemedView style={[styles.actionGroupButton, { marginTop: 10 }]}>
+                                <IconButton
+                                    icon={{
+                                        render: ({ color, size, style }) => <Entypo name="squared-plus" size={size} color={color} style={style} />,
+                                        size: 20,
+                                        color: 'green',
+                                        style: { backgroundColor: '#fff', padding: 15, borderRadius: 10 }
+                                    }} placeholder="Thêm"
+                                    style={styles.actionButtonItem}
+                                    typeText="defaultSemiBold"
+                                    lightColor="transparent"
+                                    darkColor="transparent"
+                                    onPress={OnPressButton}
+                                />
+                                <IconButton
+                                    icon={{
+                                        render: ({ color, size, style }) => <MaterialCommunityIcons name="storage-tank" size={size} color={color} style={style} />,
+                                        size: 20,
+                                        color: 'green',
+                                        style: { backgroundColor: '#fff', padding: 15, borderRadius: 10 }
+                                    }} placeholder="Lưu trữ"
+                                    style={styles.actionButtonItem}
+                                    typeText="defaultSemiBold"
+                                    lightColor="transparent"
+                                    darkColor="transparent"
+                                    onPress={OnPressButton}
+                                />
+                                <IconButton
+                                    icon={{
+                                        render: ({ color, size, style }) => <Foundation name="lightbulb" size={size} color={color} style={style} />,
+                                        size: 20,
+                                        color: 'green',
+                                        style: { backgroundColor: '#fff', padding: 15, borderRadius: 10 }
+                                    }} placeholder="Gợi ý"
+                                    style={styles.actionButtonItem}
+                                    typeText="defaultSemiBold"
+                                    lightColor="transparent"
+                                    darkColor="transparent"
+                                    onPress={OnPressButton}
+                                />
+                                <IconButton
+                                    icon={{
+                                        render: ({ color, size, style }) => <FontAwesome name="line-chart" size={size} color={color} style={style} />,
+                                        size: 20,
+                                        color: 'green',
+                                        style: { backgroundColor: '#fff', padding: 15, borderRadius: 10 }
+                                    }} placeholder="Thống kê"
+                                    style={styles.actionButtonItem}
+                                    typeText="defaultSemiBold"
+                                    lightColor="transparent"
+                                    darkColor="transparent"
+                                    onPress={OnPressButton}
+                                />
+                            </ThemedView>
 
-                                                    <ThemedText type="defaultSemiBold">12 <AntDesign name="right" size={12} color="green" /></ThemedText>
+                            <ThemedView style={[{ width: '100%', paddingHorizontal: 10, marginTop: 100, paddingBottom: 24 }, styles.boxContent]}>
+                                <ThemedView style={styles.quickStatsShadow}>
+                                    <ThemedView style={styles.quickStatsCard}>
+                                        <ThemedButton style={styles.quickStatButton} onPress={OnPressButton}>
+                                            <ThemedView>
+                                                <ThemedView style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                                                    <MaterialCommunityIcons name="silverware-fork-knife" size={14} color="green" />
+                                                    <ThemedText type="defaultSemiBold" style={{ fontSize: 14, textAlign: 'justify' }}>Công thức</ThemedText>
                                                 </ThemedView>
-                                            </ThemedButton>
-                                            <ThemedView
-                                                style={styles.quickStatsDivider}
-                                                lightColor={quickStatsDividerColor.light}
-                                                darkColor={quickStatsDividerColor.dark}
-                                            />
-                                            <ThemedButton style={styles.quickStatButton} onPress={OnPressButton}>
-                                                <ThemedView>
-                                                    <ThemedView style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-                                                        <Ionicons name="heart-sharp" size={14} color="#F53C27" />
-                                                        <ThemedText type="defaultSemiBold" style={{ fontSize: 14, textAlign: 'justify' }}>Yêu thích</ThemedText>
-                                                    </ThemedView>
-                                                    <ThemedText type="defaultSemiBold">6 <AntDesign name="right" size={12} color="#F53C27" /></ThemedText>
-                                                </ThemedView>
-                                            </ThemedButton>
-                                            <ThemedView
-                                                style={styles.quickStatsDivider}
-                                                lightColor={quickStatsDividerColor.light}
-                                                darkColor={quickStatsDividerColor.dark}
-                                            />
-                                            <ThemedButton style={styles.quickStatButton} onPress={OnPressButton}>
-                                                <ThemedView>
-                                                    <ThemedView style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-                                                        <MaterialIcons name="local-fire-department" size={14} color="#F5A327" />
-                                                        <ThemedText type="defaultSemiBold" style={{ fontSize: 14, textAlign: 'justify' }}>Calory</ThemedText>
-                                                    </ThemedView>
-                                                    <ThemedText type="defaultSemiBold">500 <AntDesign name="right" size={12} color="#F5A327" /></ThemedText>
-                                                </ThemedView>
-                                            </ThemedButton>
-                                        </ThemedView>
-                                        <ThemedView
-                                            lightColor="#EAFBEE"
-                                            style={{
-                                                flexDirection: 'row',
-                                                justifyContent: 'space-between',
-                                                alignItems: 'center',
-                                                padding: 10,
-                                                borderBottomEndRadius: 18,
-                                                borderBottomStartRadius: 18,
-                                            }}>
-                                            <ThemedView style={{ flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: 'transparent' }}>
-                                                <Feather style={{
-                                                    backgroundColor: '#C3F4D1',
-                                                    padding: 6,
-                                                    borderRadius: 10,
-                                                }} name="book-open" size={24} color="green" />
-                                                <ThemedText type="defaultSemiBold" lightColor="green" style={{ fontSize: 14, textAlign: 'justify' }}>Trung tâm dinh dưỡng</ThemedText>
+
+                                                <ThemedText type="defaultSemiBold">12 <AntDesign name="right" size={12} color="green" /></ThemedText>
                                             </ThemedView>
-                                            <Octicons name="chevron-right" size={18} color="green" />
-                                        </ThemedView>
+                                        </ThemedButton>
+                                        <ThemedView
+                                            style={styles.quickStatsDivider}
+                                            lightColor={quickStatsDividerColor.light}
+                                            darkColor={quickStatsDividerColor.dark}
+                                        />
+                                        <ThemedButton style={styles.quickStatButton} onPress={OnPressButton}>
+                                            <ThemedView>
+                                                <ThemedView style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                                                    <Ionicons name="heart-sharp" size={14} color="#F53C27" />
+                                                    <ThemedText type="defaultSemiBold" style={{ fontSize: 14, textAlign: 'justify' }}>Yêu thích</ThemedText>
+                                                </ThemedView>
+                                                <ThemedText type="defaultSemiBold">6 <AntDesign name="right" size={12} color="#F53C27" /></ThemedText>
+                                            </ThemedView>
+                                        </ThemedButton>
+                                        <ThemedView
+                                            style={styles.quickStatsDivider}
+                                            lightColor={quickStatsDividerColor.light}
+                                            darkColor={quickStatsDividerColor.dark}
+                                        />
+                                        <ThemedButton style={styles.quickStatButton} onPress={OnPressButton}>
+                                            <ThemedView>
+                                                <ThemedView style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                                                    <MaterialIcons name="local-fire-department" size={14} color="#F5A327" />
+                                                    <ThemedText type="defaultSemiBold" style={{ fontSize: 14, textAlign: 'justify' }}>Calory</ThemedText>
+                                                </ThemedView>
+                                                <ThemedText type="defaultSemiBold">500 <AntDesign name="right" size={12} color="#F5A327" /></ThemedText>
+                                            </ThemedView>
+                                        </ThemedButton>
                                     </ThemedView>
+                                    <ThemedView
+                                        lightColor="#EAFBEE"
+                                        style={{
+                                            flexDirection: 'row',
+                                            justifyContent: 'space-between',
+                                            alignItems: 'center',
+                                            padding: 10,
+                                            borderBottomEndRadius: 18,
+                                            borderBottomStartRadius: 18,
+                                        }}>
+                                        <ThemedView style={{ flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: 'transparent' }}>
+                                            <Feather style={{
+                                                backgroundColor: '#C3F4D1',
+                                                padding: 6,
+                                                borderRadius: 10,
+                                            }} name="book-open" size={24} color="green" />
+                                            <ThemedText type="defaultSemiBold" lightColor="green" style={{ fontSize: 14, textAlign: 'justify' }}>Trung tâm dinh dưỡng</ThemedText>
+                                        </ThemedView>
+                                        <Octicons name="chevron-right" size={18} color="green" />
+                                    </ThemedView>
+                                </ThemedView>
 
-                                    <ServiceGrid style={{ marginTop: 40 }} items={gridItems} columns={4} gap={6} />
+                                <ServiceGrid style={{ marginTop: 40 }} items={gridItems} columns={4} gap={6} />
 
-                                    <ThemedText type="defaultSemiBold" style={{ marginTop: 30, fontSize: 20, marginBottom: 10 }}>Gợi ý cho bạn</ThemedText>
-                                    <ThemedScrollView flexDirection="row" horizontal showsHorizontalScrollIndicator={false}>
-                                        { suggestedFunctions?.map(func => (
-                                            <ThemedButton key={func.id} onPress={func.onPress} 
+                                <ThemedText type="defaultSemiBold" style={{ marginTop: 30, fontSize: 20, marginBottom: 10 }}>Gợi ý cho bạn</ThemedText>
+                                <ThemedScrollView flexDirection="row" horizontal showsHorizontalScrollIndicator={false}>
+                                    {suggestedFunctions?.map(func => (
+                                        <ThemedButton key={func.id} onPress={func.onPress}
                                             style={({ pressed }) => ({
                                                 width: 100,
                                                 padding: 10,
@@ -388,40 +389,34 @@ export default function Index() {
                                                 boxShadow: '1px 2px 5px rgba(0, 0, 0, 0.1)',
                                                 backgroundColor: !pressed ? '#fff' : '#EDFEE7',
                                             })}>
-                                                <ThemedView lightColor="transparent" darkColor="transparent" style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 6 }}>
-                                                
-                                                    {func.icon}
-                    
-                                                    <ThemedText type="defaultSemiBold" style={{ fontSize: 12 }}>{func.title}</ThemedText>
-                                                </ThemedView>
-                                            </ThemedButton>
-                                        )) } 
-                                    </ThemedScrollView>
-                                </ThemedView>
-                            </>
-                        }
-                        ListFooterComponent={
-                            <ThemedView style={{
-                                flexDirection: 'row',
-                                justifyContent: 'center',
-                                gap: 5,
-                                padding: 20,
-                            }}>
-                                <AntDesign name="copyright" size={24} color="black" />
-                                <ThemedText>
-                                    2026 FoodRaining. All rights reserved.
-                                </ThemedText>
+                                            <ThemedView lightColor="transparent" darkColor="transparent" style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+
+                                                {func.icon}
+
+                                                <ThemedText type="defaultSemiBold" style={{ fontSize: 12 }}>{func.title}</ThemedText>
+                                            </ThemedView>
+                                        </ThemedButton>
+                                    ))}
+                                </ThemedScrollView>
                             </ThemedView>
-                        }
-                    />
-                </ImageBackground>
-            </SafeAreaView>
+                        </>
+                    }
+                    
+                />
+            </ImageBackground>
+
+
         </>
     );
 
 }
 
 const styles = StyleSheet.create({
+    screenBackground: {
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start'
+    },
     headerBar: {
         flexDirection: 'row',
         width: '100%',
@@ -429,7 +424,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 16,
         gap: 12,
-        marginTop: 5,
         backgroundColor: 'transparent'
     },
     searchBarWrap: {
